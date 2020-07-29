@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400');
+
+
+html,
+body {
+  min-width: 290px;
+  color: #2e2e2e;
+  background-color: #efefef;
+  font-family: "Open Sans", Arial, sans-serif;
+  line-height: 1.5;
+}
+
+#navbar {
+  position: fixed;
+  min-width: 290px;
+  top: 0px;
+  left: 0px;
+  width: 300px;
+  height: 100%;
+  border-right: solid;
+  border-color: rgba(22, 22, 22, 0.1);
+}
+
+#navbar li {
+  color: #2e2e2e;
+  border-top: 1px dashed;
+  list-style: none;
+  position: relative;
+  width: 100%;
+}
+
+#navbar li:hover{
+  background-color: #d1d1d1;
+}
+
+#navbar ul {
+  height: 88%;
+  padding: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#navbar a {
+  display: block;
+  padding: 10px 30px;
+  color: #2e2e2e;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+header {
+  color: black;
+  margin: 10px;
+  text-align: center;
+  font-size: 1.8em;
+  font-weight: thin;
+}
+
+#main-doc header {
+  text-align: left;
+  margin: 0px;
+}
+
+#main-doc {
+  position: absolute;
+  margin-left: 310px;
+  padding: 20px;
+  margin-bottom: 110px;
+}
+
+section article {
+  color: #2e2e2e;
+  margin: 15px;
+  font-size: 0.96em;
+}
+
+section li {
+  margin: 15px 0px 0px 20px;
+}
+
+code {
+  display: block;
+  text-align: left;
+  white-space: pre;
+  position: relative;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1;
+  background-color: #f7f7f7;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 5px;
+  color: rgb(0, 67, 122);
+}
+
+.value-type {
+  background-color: rgba(218,218,218, 0.8);
+  padding: 3px 5px 3px 5px;
+  border-radius: 5px;
+  color: rgb(122, 0, 41);
+}
+
+.property-type {
+  background-color: rgba(218,218,218, 0.8);
+  padding: 3px 5px 3px 5px;
+  border-radius: 5px;
+  color: rgb(0, 88, 160);
+}
+
+@media only screen and (max-width: 815px) {
+  /* For mobile phones: */
+  #navbar ul {
+    border: 1px solid;
+    height: 207px;
+  }
+
+  #navbar {
+    background-color: white;
+    position: absolute;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-height: 275px;
+    border: none;
+    z-index: 1;
+    border-bottom: 2px solid;
+  }
+
+  #main-doc {
+    position: relative;
+    margin-left: 0px;
+    margin-top: 270px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  #main-doc {
+    margin-left: -10px;
+  }
+
+  code {
+    margin-left: -20px;
+    width: 100%;
+    padding: 15px;
+    padding-left: 10px;
+    padding-right: 45px;
+    min-width: 233px;
+  }
+}
+
+/* Collapsible Section*/
+
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.collapsible:after {
+  content: '\002B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+}
+
+/* Flexbox Examples */
+
+.example {
+  font-weight: 700;
+  margin-left: 10px;
+  text-decoration: underline;
+}
+
+.container {
+  display: flex;
+  border: 1px dashed;
+  margin: 10px;
+  width: 500px;
+  height: 150px;
+}
+
+.container-row {
+  display: flex;
+  flex-direction: row;
+  border: 1px dashed;
+  margin: 10px;
+  width: 500px;
+  height: 150px;
+}
+
+.container-column {
+  display: flex;
+  flex-direction: column;
+  border: 1px dashed;
+  margin: 10px;
+  width: 500px;
+  height: 250px;
+}
+
+.row-reverse {
+  flex-direction: row-reverse;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-flow {
+  flex-flow: row wrap;
+}
+
+.align-items {
+  align-items: flex-start;
+}
+
+.justify-content {
+  justify-content: space-around;
+}
+
+.item {
+  background-color: rgba(0, 88, 160, 0.5);
+  color: #efefef;
+  border: 1px dashed rgb(0,0,0);
+  border-radius: 10px;
+  text-align: center;
+  margin: 2px;
+  padding: 10px;
+}
+
+.item-wrap {
+  background-color: rgba(0, 88, 160, 0.5);
+  color: #efefef;
+  border: 1px dashed rgb(0,0,0);
+  border-radius: 10px;
+  text-align: center;
+  margin: 2px;
+  padding-left: 80px;
+  padding-right: 80px;
+}

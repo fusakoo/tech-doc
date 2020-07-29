@@ -1,0 +1,471 @@
+<!-- FCC test script -->
+<!-- <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script> -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CSS Flexbox Guide</title>
+        <meta name="description" content="Guide on CSS Flexbox.">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="styles/main.css">
+    </head>
+
+    <body>
+        <nav id="navbar">
+            <header>CSS Flexible Box (Flexbox) Guide</header>
+            <ul>
+                <li>
+                    <a class="nav-link" href="#Introduction">Introduction</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#Two_Axes_of_Flexbox">Two Axes of Flexbox</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#Start_and_End_Lines">Start and End Lines</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#Flex_Container">Flex Container</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#Multi-line_Flex_Containers_with_Flex-wrap">Multi-line Flex Containers with Flex-wrap</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#Flex-flow_Shorthand">Flex-flow Shorthand</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#Align,_Justify_and_Distribute_Space_between_Items">Align, Justify and Distribute Space between Items</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#Reference">Reference</a>
+                </li>
+            </ul>
+        </nav>
+        <main id="main-doc">
+            <section class="main-section" id="Introduction">
+                <header>Introduction</header>
+                <article>
+                    <p>
+                        <strong>CSS Flexible Box Layout</strong> is a module of CSS that defines a CSS box model optimized for user interface design, 
+                        and the layout of items in one dimension. In the flex layout model, the children of a flex container can be laid out in any 
+                        direction, and can “flex” their sizes, either growing to fill unused space or shrinking to avoid overflowing the parent. 
+                        Both horizontal and vertical alignment of the children can be easily manipulated.
+                    </p>
+                    <p>
+                        The Flexible Box Module is usually referred to as flexbox.
+                    </p>
+                    <p>
+                        When we describe flexbox as being one dimensional we are describing the fact that flexbox deals with layout in one dimension 
+                        at a time — either as a row or as a column. This can be contrasted with the two-dimensional model of CSS Grid Layout, 
+                        which controls columns and rows together.
+                    </p>
+                </article>
+            </section>
+            <section class="main-section" id="Two_Axes_of_Flexbox">
+                <header>Two Axes of Flexbox</header>
+                <article>
+                    <p>
+                        When working with flexbox you need to think in terms of two axes — the main axis and the cross axis. 
+                        The main axis is defined by the <span class="property-type">flex-direction</span> property, 
+                        and the cross axis runs perpendicular to it. 
+                        Everything we do with flexbox refers back to these axes, so it is worth understanding how they work from the outset.
+                    </p>
+                    <button class="collapsible">The Main Axis</button>
+                    <div class="content">
+                        <p>
+                            The main axis is defined by <span class="property-type">flex-direction</span>, which has four possible values:
+                        </p>
+                        <ul>
+                            <li>row</li>
+                            <li>row-reverse</li>
+                            <li>column</li>
+                            <li>column-reverse</li>
+                        </ul>
+                        <p>
+                            Should you choose <span class="value-type">row</span> or <span class="value-type">row-reverse</span>, 
+                            your main axis will run along the row in the <strong>inline direction</strong>.
+                        </p>
+                        <div class="container-row">
+                            <div class="item">One</div>
+                            <div class="item">Two</div>
+                            <div class="item">Three</div>
+                        </div>
+                        <p>
+                            Choose <span class="value-type">column</span> or <span class="value-type">column-reverse</span> 
+                            and your main axis will run from the top of the page to the bottom — in the <strong>block direction</strong>.
+                        </p>
+                        <div class="container-column">
+                            <div class="item">One</div>
+                            <div class="item">Two</div>
+                            <div class="item">Three</div>
+                        </div>
+                    </div>
+                    <button class="collapsible">The Cross Axis</button>
+                    <div class="content">
+                        <p>
+                            The cross axis runs perpendicular to the main axis, therefore if your <span class="property-type">flex-direction</span> 
+                            (main axis) is set to <span class="value-type">row</span> or <span class="value-type">row-reverse</span> 
+                            the cross axis runs down the columns.
+                        </p>
+                        <div class="container-row">
+                            <div class="item">One</div>
+                            <div class="item">Two</div>
+                            <div class="item">Three</div>
+                        </div>
+                        <p>
+                            If your main axis is <span class="value-type">column</span> or <span class="value-type">column-reverse</span> 
+                            then the cross axis runs along the rows.
+                        </p>
+                        <div class="container-column">
+                            <div class="item">One</div>
+                            <div class="item">Two</div>
+                            <div class="item">Three</div>
+                        </div>
+                    </div>
+                    <p>
+                        Understanding which axis is which is important when we start to look at aligning and justifying flex items; 
+                        flexbox features properties that align and justify content along one axis or the other.
+                    </p>
+                </article>
+            </section>
+            <section class="main-section" id="Start_and_End_Lines">
+                <header>Start and End Lines</header>
+                <article>
+                    <p>
+                        Another vital area of understanding is how flexbox makes no assumption about the writing mode of the document. 
+                        In the past, CSS was heavily weighted towards horizontal and left-to-right writing modes. Modern layout methods encompass 
+                        the range of writing modes and so we no longer assume that a line of text will start at the top left of a document and 
+                        run towards the right hand side, with new lines appearing one under the other.
+                    </p>
+                    <p>
+                        You can read more about the relationship between flexbox and the Writing Modes specification in a later article; 
+                        however, the following description should help explain why we do not talk about left and right and top and bottom 
+                        when we describe the direction that our flex items flow in.
+                    </p>
+                    <p>
+                        If the <span class="property-type"">flex-direction</span> is <span class="value-type">row</span> and 
+                        I am working in English, then the start edge of the main axis will be on the left, the end edge on the right.
+                    </p>
+                    <div class="container-row">
+                        <div class="item">One</div>
+                        <div class="item">Two</div>
+                        <div class="item">Three</div>
+                    </div>
+                    <p>
+                        If I were to work in Arabic, then the start edge of my main axis would be on the right and the end edge on the left.
+                    </p>
+                    <div class="container-row row-reverse">
+                        <div class="item">One</div>
+                        <div class="item">Two</div>
+                        <div class="item">Three</div>
+                    </div>
+                    <p>
+                        In both cases the start edge of the cross axis is at the top of the flex container and the end edge at the bottom, 
+                        as both languages have a horizontal writing mode.
+                    </p>
+                    <p>
+                        After a while, thinking about start and end rather than left and right becomes natural, and will be useful to you when 
+                        dealing with other layout methods such as CSS Grid Layout which follow the same patterns.
+                    </p>
+                </article>
+            </section>
+            <section class="main-section" id="Flex_Container">
+                <header>Flex Container</header>
+                <article>
+                    <p>
+                        An area of a document laid out using flexbox is called a <strong>flex container</strong>. 
+                        To create a flex container, we set the value of the area's container's <span class="property-type">display</span> property to <span class="value-type">flex</span> or <span class="variable-type">inline-flex</span>. 
+                        As soon as we do this the direct children of that container become <strong>flex items</strong>. As with all properties in CSS, 
+                        some initial values are defined, so when creating a flex container all of the contained flex items will behave in the following way.
+                    </p>
+                    <ul>
+                        <li>
+                            Items display in a row (the <span class="property-type">flex-direction</span> property's default is <span class="value-type">row</span>).
+                        </li>
+                        <li>
+                            The items start from the start edge of the main axis.
+                        </li>
+                        <li>
+                            The items do not stretch on the main dimension, but can shrink.
+                        </li>
+                        <li>
+                            The items will stretch to fill the size of the cross axis.
+                        </li>
+                        <li>
+                            The <span class="property-type">flex-basis</span> property is set to <span class="value-type">auto</span>.
+                        </li>
+                        <li>
+                            The <span class="property-type">flex-wrap</span> property is set to <span class="value-type">nowrap</span>.
+                        </li>
+                    </ul>
+                    <p>
+                        The result of this is that your items will all line up in a row, using the size of the content as their size in the main axis. 
+                        If there are more items than can fit in the container, they will not wrap but will instead overflow. 
+                        If some items are taller than others, all items will stretch along the cross axis to fill its full size.
+                    </p>
+                    <p class="example">
+                        Example:
+                    </p>
+                    <div class="container">
+                        <div class="item">One</div>
+                        <div class="item">Two</div>
+                        <div class="item">Three
+                            <br>has
+                            <br>extra
+                            <br>text
+                        </div>
+                    </div>
+                    <code>
+                        .box {</br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;display: flex;</br>
+                        }</br>
+                    </code>
+                    <code>
+                        &lt;div class=&quot;box&quot;&gt;<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;One&lt;/div&gt;<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;Two&lt;/div&gt;<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;Three<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;br&gt;has<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;br&gt;extra<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;br&gt;text<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br/>
+                        &lt;/div&gt;
+                    </code>
+                    <button class="collapsible">Changing Flex-direction</button>
+                    <div class="content">
+                        <p>
+                            Adding the <span class="property-type">flex-direction</span> property to the flex container allows us to change the direction in which our flex items display. 
+                            Setting <span class="variable-type">flex-direction: row-reverse</span> will keep the items displaying along the row, however the start and end lines are switched.
+                        </p>
+                        <p>
+                            If we change <span class="property-type">flex-direction</span> to column the main axis switches and our items now display in a column. 
+                            Set <span class="value-type">column-reverse</span> and the start and end lines are again switched.
+                        </p>
+                        <p class="example">
+                            Example:
+                        </p>
+                        <div class="container-row row-reverse">
+                            <div class="item">One</div>
+                            <div class="item">Two</div>
+                            <div class="item">Three</div>
+                        </div>
+                        <code>
+                            .box {</br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;display: flex;</br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;flex-direction: row-reverse;</br>
+                            }</br>
+                        </code>
+                        <code>
+                            &lt;div class=&quot;box&quot;&gt;<br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;One&lt;/div&gt;<br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;Two&lt;/div&gt;<br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;Three&lt;/div&gt;<br/>
+                            &lt;/div&gt;
+                        </code>
+                    </div>
+                </article>
+            </section>
+            <section class="main-section" id="Multi-line_Flex_Containers_with_Flex-wrap">
+                <header>Multi-line Flex Containers with Flex-wrap</header>
+                <article>
+                    <p>
+                        While flexbox is a one dimensional model, it is possible to cause our flex items to wrap onto multiple lines. 
+                        In doing so, you should consider each line as a new flex container. 
+                        Any space distribution will happen across that line, without reference to the lines either side.
+                    </p>
+                    <p>
+                        To cause wrapping behaviour add the property <span class="property-type">flex-wrap</span> with a value of <span class="value-type">wrap</span>. 
+                        Now, should your items be too large to all display in one line, they will wrap onto another line. 
+                        The live sample below contains items that have been given a width, the total width of the items being too wide for the flex container. 
+                        As <span class="property-type">flex-wrap</span> is set to <span class="value-type">wrap</span>, the items wrap. Set it to <span class="value-type">nowrap</span>, 
+                        which is also the initial value, and they will instead shrink to fit the container because they are using initial flexbox values that allows items to shrink. 
+                        Using <span class="value-type">nowrap</span> would cause an overflow if the items were not able to shrink, or could not shrink small enough to fit.
+                    </p>
+                    <p class="example">
+                        Example:
+                    </p>
+                    <div class="container flex-wrap">
+                        <div class="item-wrap">One</div>
+                        <div class="item-wrap">Two</div>
+                        <div class="item-wrap">Three</div>
+                    </div>
+                    <code>
+                        .box {</br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;display: flex;</br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;flex-wrap: wrap;</br>
+                        }</br>
+                    </code>
+                    <code>
+                        &lt;div class=&quot;box&quot;&gt;<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;One&lt;/div&gt;<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;Two&lt;/div&gt;<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;Three&lt;/div&gt;<br/>
+                        &lt;/div&gt;
+                    </code>
+                </article>
+            </section>
+            <section class="main-section" id="Flex-flow_Shorthand">
+                <header>Flex-flow Shorthand</header>
+                <article>
+                    <p>
+                        You can combine the two properties <span class="property-type">flex-direction</span> and <span class="property-type">flex-wrap</span> into the <span class="property-type">flex-flow</span> shorthand. 
+                        The first value specified is <span class="value-type">flex-direction</span> and the second value is <span class="value-type">flex-wrap</span>.
+                    </p>
+                    <p class="example">
+                        Example:
+                    </p>
+                    <div class="container flex-flow">
+                        <div class="item-wrap">One</div>
+                        <div class="item-wrap">Two</div>
+                        <div class="item-wrap">Three</div>
+                    </div>
+                    <code>
+                        .box {</br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;display: flex;</br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;flex-flow: row wrap;</br>
+                        }</br>
+                    </code>
+                    <code>
+                        &lt;div class=&quot;box&quot;&gt;<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;One&lt;/div&gt;<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;Two&lt;/div&gt;<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;Three&lt;/div&gt;<br/>
+                        &lt;/div&gt;
+                    </code>
+                </article>
+            </section>
+            <section class="main-section" id="Align,_Justify_and_Distribute_Space_between_Items">
+                <header>Align, Justify and Distribute Space between Items</header>
+                <article>
+                    <p>
+                        A key feature of flexbox is the ability to align and justify items on the main- and cross-axes, and to distribute space between flex items.
+                    </p>
+                    <button class="collapsible"><span class="property-type">align-items</span></button>
+                    <div class="content">
+                        <p>
+                            The <span class="property-type">align-items</span> property will align the items on the cross axis.
+                        </p>
+                        <p>
+                            The initial value for this property is <span class="value-type">stretch</span> and this is why flex items stretch to the height of the tallest one by default. 
+                            They are in fact stretching to fill the flex container — the tallest item is defining the height of that.
+                        </p>
+                        <p>
+                            You could instead set <span class="property-type">align-items</span> to <span class="value-type">flex-start</span> in order to make the items line up at the start of the flex container, 
+                            <span class="value-type">flex-end</span> to align them to the end, or <span class="value-type">center</span> to align them in the centre.
+                        </p>
+                        <p class="example">
+                            Example with the value <span class="value-type">flex-start</span> applied:
+                        </p>
+                        <div class="container align-items">
+                            <div class="item">One</div>
+                            <div class="item">Two</div>
+                            <div class="item">Three
+                                <br>has
+                                <br>extra
+                                <br>text
+                            </div>
+                        </div>
+                        <code>
+                            .box {</br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;display: flex;</br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;align-items: flex-start;</br>
+                            }</br>
+                        </code>
+                        <code>
+                            &lt;div class=&quot;box&quot;&gt;<br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;One&lt;/div&gt;<br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;Two&lt;/div&gt;<br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;Three<br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;br&gt;has<br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;br&gt;extra<br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;br&gt;text<br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br/>
+                            &lt;/div&gt;
+                        </code>
+                        <p>
+                            Following values can be applied to the <span class="property-type">align-items</span> property:
+                        </p>
+                        <ul>
+                            <li><span class="value-type">stretch</span></li>
+                            <li><span class="value-type">flex-start</span></li>
+                            <li><span class="value-type">flex-end</span></li>
+                            <li><span class="value-type">center</span></li>
+                    </div>
+                    </div>
+                    <button class="collapsible"><span class="property-type">justify-content</span></button>
+                    <div class="content">
+                        <p>
+                            The <span class="property-type">justify-content</span> property is used to align the items on the main axis, the direction in which <span class="property-type">flex-direction</span> has set the flow. 
+                            The initial value is <span class="value-type">flex-start</span> which will line the items up at the start edge of the container, 
+                            but you could also set the value to <span class="value-type">flex-end</span> to line them up at the end, or <span class="value-type">center</span> to line them up in the centre.
+                        </p>
+                        <p>
+                            You can also use the value <span class="value-type">space-between</span> to take all the spare space after the items have been laid out, 
+                            and share it out evenly between the items so there will be an equal amount of space between each item. 
+                            To cause an equal amount of space on the right and left of each item use the value <span class="value-type">space-around</span>. 
+                            With <span class="value-type">space-around</span>, items have a half-size space on either end. Or, to cause items to have equal space around them use the value <span class="value-type">space-evenly</span>. 
+                            With <span class="value-type">space-evenly</span>, items have a full-size space on either end.
+                        </p>
+                        <p class="example">
+                            Example with the value of <span class="value-type">space-around</span> applied:
+                        </p>
+                        <div class="container justify-content">
+                            <div class="item">One</div>
+                            <div class="item">Two</div>
+                            <div class="item">Three</div>
+                        </div>
+                        <code>
+                            .box {</br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;display: flex;</br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;justify-content: space-around;</br>
+                            }</br>
+                        </code>
+                        <code>
+                            &lt;div class=&quot;box&quot;&gt;<br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;One&lt;/div&gt;<br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;Two&lt;/div&gt;<br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;Three&lt;/div&gt;<br/>
+                            &lt;/div&gt;
+                        </code>
+                        <p>
+                            Following values can be applied to the <span class="property-type">justify-content</span> property:
+                        </p>
+                        <ul>
+                            <li><span class="value-type">flex-start</span></li>
+                            <li><span class="value-type">flex-end</span></li>
+                            <li><span class="value-type">center</span></li>
+                            <li><span class="value-type">space-around</span></li>
+                            <li><span class="value-type">space-evenly</span></li>
+                    </div>
+                </article>
+            </section>
+            <section class="main-section" id="Reference">
+                <header>Reference</header>
+                <article>
+                    <ul>
+                        <li>
+                            All the documentation in this page is taken from
+                            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout" target="_blank">MDN web docs</a>
+                        </li>
+                    </ul>
+                </article>
+            </section>
+        </main>
+        <script>
+            var coll = document.getElementsByClassName("collapsible");
+            var i;
+            
+            for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight){
+                content.style.maxHeight = null;
+                } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                } 
+            });
+            }
+        </script>
+    </body>
+</html>
