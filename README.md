@@ -1,5 +1,5 @@
 <h1>Technical Documentation - Flexbox</h1>
-<p>Technical Documentation sample. See it live on <a href="https://codepen.io/fusakoo/pen/OJMeqor" target="_blank">codepen.io</a>.</p>
+<p>Technical Documentation sample. See it live on <a href="https://codepen.io/fusakoo/full/OJMeqor" target="_blank">codepen.io</a>.</p>
 <p>This was created as part of the challenges of <a href="https://www.freecodecamp.org" target="_blank">Freecodecamp.org</a></p>
 <h3>Built with:</h3>
 <ul>
